@@ -1,0 +1,12 @@
+---
+layout:     post
+title:      "Titanic"
+subtitle:   "你在场灾难里，到底什么决定着生死"
+date:       2018-05-06
+author:     "GengDaPeng"
+header-img: "img/post-bg-unix-linux.jpg"
+tags:
+    - kaggle
+---
+
+{% include posts/2018-05-06-titanic.html %}
