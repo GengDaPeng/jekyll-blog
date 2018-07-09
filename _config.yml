@@ -61,6 +61,7 @@ gitalk:
     repo:  blog_comments     # 评论仓库名称
     clientID:  a19c3ba0279e4a0e00b2  # 申请的ID
     clientSecret: fdf76f34221a812917ceafbfc4c21f1e6c191cf9  # 申请的clientSecret
+    admin: GengDaPeng
 
 
 # Analytics settings

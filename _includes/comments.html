@@ -10,6 +10,7 @@ var gitalk = new Gitalk({
     owner: '{{ site.gitalk.owner }}',
     admin: ['{{ site.gitalk.owner }}'], 
 	labels: ['Gitalk'],
+    perPage: 20,
 })
 gitalk.render('gitalk-container')
 </script>
