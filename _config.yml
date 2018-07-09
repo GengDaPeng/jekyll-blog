@@ -56,11 +56,11 @@ disqus_username:
 netease_comment: false
 
 
-# gitalk:
-owner:  GengDaPeng  # 你
-repo:  blog_comments     # 评论仓库名称
-clientID:  a19c3ba0279e4a0e00b2  # 申请的ID
-clientSecret: fdf76f34221a812917ceafbfc4c21f1e6c191cf9  # 申请的clientSecret
+gitalk:
+    owner:  GengDaPeng  # 你
+    repo:  blog_comments     # 评论仓库名称
+    clientID:  a19c3ba0279e4a0e00b2  # 申请的ID
+    clientSecret: fdf76f34221a812917ceafbfc4c21f1e6c191cf9  # 申请的clientSecret
 
 
 # Analytics settings
