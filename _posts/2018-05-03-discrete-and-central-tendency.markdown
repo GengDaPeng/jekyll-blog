@@ -5,11 +5,10 @@ subtitle:   "什么是集中趋势，什么是离中趋势，如何测量对比�
 date:       2018-05-03
 author:     "GengDaPeng"
 header-img: "img/post-bg-unix-linux.jpg"
-catalog: True
+catalog:    true
 tags:
     - 特征分析
 ---
-# 统计分析之集中趋势与离中趋势
 
 > 统计指标对**定量数据**进行统计描述，常从**集中趋势**和**离中趋势**两个方面进行分析
 

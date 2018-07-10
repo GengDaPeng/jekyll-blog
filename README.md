@@ -33,7 +33,8 @@
 
   - [x] 添加对mathjax的支持(2018.6)
   - [ ] catalog（目录）的bug修复
-  - [ ] 添加gitalk评论支持
+  - [x] 添加gitalk评论支持(2018.7.10)
+    - 参考了[为博客添加 Gitalk 评论插件](http://qiubaiying.top/2017/12/19/%E4%B8%BA%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0-Gitalk-%E8%AF%84%E8%AE%BA%E6%8F%92%E4%BB%B6/)
   - [ ] 添加文章搜索功能
   - [ ] 添加文章分类页面
   - [ ] 添加对插入网页的支持（将jupyter notebook 转换成网页，这样子就可以在文章中支持可交互的图表等动态信息了）
