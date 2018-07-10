@@ -4,7 +4,7 @@ SEOTitle: 耿大鹏的博客 | GengDaPeng Blog
 header-img: img/home-bg.jpg
 email: bingshan222@hotmail.com
 description: "DataAnaliys and MachineLearning Notes"
-keyword: ""
+keyword: "耿大鹏, GengPeng, 数据科学博客,数据分析,机器学习,python数据分析,GengDaPeng,耿鹏,数据""
 url: "http://gengdapeng.github.io"              # your host, for absolute URL
 baseurl: ""                             # for example, '/blog' if your blog hosted on 'host/blog'
 
@@ -79,7 +79,7 @@ sidebar-avatar: /img/avatar-gpp.jpg     # use absolute URL, seeing it's used in 
 
 # Featured Tags
 featured-tags: true                     # whether or not using Feature-Tags
-featured-condition-size: 2              # A tag will be featured if the size of it is more than this condition value
+featured-condition-size: 1              # A tag will be featured if the size of it is more than this condition value
 
 
 
