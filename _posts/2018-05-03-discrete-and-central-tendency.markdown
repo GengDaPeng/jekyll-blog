@@ -5,6 +5,7 @@ subtitle:   "什么是集中趋势，什么是离中趋势，如何测量对比�
 date:       2018-05-03
 author:     "GengDaPeng"
 header-img: "img/post-bg-unix-linux.jpg"
+header-mask: 0.3
 catalog:    true
 tags:
     - 特征分析
