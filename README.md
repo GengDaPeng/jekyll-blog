@@ -1,6 +1,6 @@
 # 关于我的博客
 
-#### [我的博客在这里 &rarr;](https://GengDaPeng.github.io)
+## [我的博客在这里 &rarr;](https://GengDaPeng.github.io)
 
 ### 为什么要搭建这个博客
 
@@ -31,11 +31,11 @@
 
 刚开始搭建这个博客还是有些不明白的，好在并不是很高深，看了下基础教程算是大概明白了，并根据自身需要做了一点修改，不过目前还有部分问题没有修复，所以还在探索。
 
-  - [x] 添加对mathjax的支持(2018.6)
-  - [x] catalog（目录）的不能正常显示的bug修复(2018.7.10)
-    - 参考了这个同模板博客的[issues#35](https://github.com/qiubaiying/qiubaiying.github.io/issues/35)
-  - [x] 添加gitalk评论支持(2018.7.10)
-    - 参考了[《为博客添加 Gitalk 评论插件》](http://qiubaiying.top/2017/12/19/%E4%B8%BA%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0-Gitalk-%E8%AF%84%E8%AE%BA%E6%8F%92%E4%BB%B6/)
-  - [ ] 添加文章搜索功能
-  - [ ] 添加文章分类页面
-  - [ ] 添加对插入网页的支持（将jupyter notebook 转换成网页，这样子就可以在文章中支持可交互的图表等动态信息了）
+  1. [x] 添加对mathjax的支持(2018.6)
+  2. [x] catalog（目录）的不能正常显示的bug修复(2018.7.10)
+      - 参考了这个同模板博客的[issues#35](https://github.com/qiubaiying/qiubaiying.github.io/issues/35)
+  3. [x] 添加gitalk评论支持(2018.7.10)
+      - 参考了[《为博客添加 Gitalk 评论插件》](http://qiubaiying.top/2017/12/19/%E4%B8%BA%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0-Gitalk-%E8%AF%84%E8%AE%BA%E6%8F%92%E4%BB%B6/)
+  4. [ ] 添加文章搜索功能
+  5. [ ] 添加文章分类页面
+  6. [ ] 添加对插入网页的支持（将jupyter notebook 转换成网页，这样子就可以在文章中支持可交互的图表等动态信息了）
