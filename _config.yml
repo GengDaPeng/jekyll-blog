@@ -4,7 +4,7 @@ SEOTitle: 耿大鹏的博客 | GengDaPeng Blog
 header-img: img/home-bg.jpg
 email: bingshan222@hotmail.com
 description: "DataAnaliys and MachineLearning Notes"
-keyword: "耿大鹏, GengPeng, 数据科学博客,数据分析,机器学习,python数据分析,GengDaPeng,耿鹏,数据""
+keyword: "耿大鹏, GengPeng, 数据科学博客,数据分析,机器学习,python数据分析,GengDaPeng,耿鹏,数据"
 url: "http://gengdapeng.github.io"              # your host, for absolute URL
 baseurl: ""                             # for example, '/blog' if your blog hosted on 'host/blog'
 
