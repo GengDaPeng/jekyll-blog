@@ -1,19 +1,16 @@
 ---
 layout:     post
-title:      "统计分析之集中趋势与离中趋势"
-subtitle:   "什么是集中趋势，什么是离中趋势，如何测量对比分析它们"
-date:       2018-05-04
+title:      "Kaggle竞赛——泰坦尼克号幸存者预测"
+subtitle:   "在那场灾难中，是什么？在左右着生死。"
+date:       2018-05-08
 author:     "GengDaPeng"
-header-img: "img/post-bg-unix-linux.jpg"
+header-img: "img/titanic/titanic-bg.jpg"
 header-mask: 0.3
 catalog:    true
 tags:
     - kaggle
-    - 机器学习
 ---
-
-# kaggle竞赛：泰坦尼克幸存者预测——(一）
-
+泰坦尼克号是当时（1912年）世界上体积最庞大、内部设施最豪华的客运轮船，有“永不沉没”的美誉 。然而在首次航行中，泰坦尼克号与一座冰山相撞，逾1500人丧生，其中仅333具罹难者遗体被寻回。泰坦尼克号沉没事故为和平时期死伤人数最惨重的海难之一，其残骸直至1985年才被再度发现，目前受到联合国教育、科学及文化组织的保护。本次竞赛以此为背景，根据提供的乘客数据来预测这些乘客能否生还（当然真实的情况要比这复杂得多）。
 
 ```python
 import pandas as pd
@@ -33,7 +30,6 @@ matplotlib.rcParams['axes.unicode_minus']=False
 
 ## 导入数据
 
-
 ```python
 titanic = pd.read_csv(r'E:\DataScience\ML\Titanic\train.csv')
 
@@ -41,9 +37,6 @@ titanic_test = pd.read_csv(r'E:\DataScience\ML\Titanic\test.csv')
 
 titanic.head(10)
 ```
-
-
-
 
 <div>
 <style scoped>
@@ -232,28 +225,24 @@ titanic.head(10)
 </table>
 </div>
 
-| 单词 | 翻译 |	Key
-|:------:|------:|:---:|	
-|survival|是否幸存| 0 = No, 1 = Yes|	
-|pclass	| 社会阶层 | 1 = 精英, 2 = 中层 , 3 = 普通民众|	
-|sex	| 性别|	
-|Age	| 年龄|	
-|sibsp	| 船上兄弟/姐妹的个数 |	
-|parch	| 船上父母/孩子的个数 |	
-|ticket| 船票号 |	
-|fare	| 船票价格 |	
-|cabin	| 船舱号码 |	
+| 单词 | 翻译 |Key
+|:------:|------:|:---:|
+|survival|是否幸存| 0 = No, 1 = Yes|
+|pclass| 社会阶层 | 1 = 精英, 2 = 中层 , 3 = 普通民众|
+|sex| 性别|
+|Age| 年龄|
+|sibsp| 船上兄弟/姐妹的个数 |
+|parch| 船上父母/孩子的个数 |
+|ticket| 船票号 |
+|fare| 船票价格 |
+|cabin| 船舱号码 |
 |embarked| 登船口 | C = Cherbourg, Q = Queenstown, S = Southampton|
-
 
 ```python
 # 查看数据简单的统计
 
 titanic.describe()
 ```
-
-
-
 
 <div>
 <style scoped>
@@ -367,9 +356,6 @@ titanic.describe()
 </table>
 </div>
 
-
-
-
 ```python
 # 查看数据概要
 
@@ -393,10 +379,8 @@ titanic.info()
     Embarked       889 non-null object
     dtypes: float64(2), int64(5), object(5)
     memory usage: 83.6+ KB
-    
 
 从上可以看出，Age,Cabin,Fare,Embarked几个特征存在空值
-
 
 ```python
 # 统计空值
@@ -418,11 +402,10 @@ print(titanic.isnull().sum())
     Cabin          687
     Embarked         2
     dtype: int64
-    
 
 ## 数据清洗
-### 处理缺失值
 
+### 处理缺失值
 
 ```python
 # 可以填充整个dataframe的空值
@@ -436,9 +419,6 @@ titanic.Age.fillna(-30, inplace=True)
 #查看为空的数据
 titanic.isnull().sum()
 ```
-
-
-
 
     PassengerId      0
     Survived         0
@@ -454,19 +434,14 @@ titanic.isnull().sum()
     Embarked         2
     dtype: int64
 
-
-
 ## 数据分析
-### 性别Sex对生还与否的影响
 
+### 性别Sex对生还与否的影响
 
 ```python
 # 做简单是汇总统计
 titanic.groupby(['Sex','Survived'])['Survived'].count()
 ```
-
-
-
 
     Sex     Survived
     female  0            81
@@ -475,18 +450,12 @@ titanic.groupby(['Sex','Survived'])['Survived'].count()
             1           109
     Name: Survived, dtype: int64
 
-
-
-
 ```python
 # 生还率统计
 
 df_sex = titanic[['Sex','Survived']].groupby(['Sex']).mean()
 df_sex
 ```
-
-
-
 
 <div>
 <style scoped>
@@ -526,9 +495,6 @@ df_sex
 </table>
 </div>
 
-
-
-
 ```python
 # 绘制柱状图
 
@@ -540,24 +506,16 @@ df_sex.plot(kind='bar',
 plt.grid(True, linestyle='--')
 ```
 
-
 ![png](output_14_0.png)
-
-
-    
 
 **从上面可以发现，事实是与男性比女性的生存能力更强的经验常识相悖的，可以推测Lady First起到了很大的作用**
 
 ### 社会阶层 Pclass与生还与否的关系
 
-
 ```python
 # 统计
 titanic.groupby(['Pclass', 'Survived'])['Pclass'].count()
 ```
-
-
-
 
     Pclass  Survived
     1       0            80
@@ -568,16 +526,10 @@ titanic.groupby(['Pclass', 'Survived'])['Pclass'].count()
             1           119
     Name: Pclass, dtype: int64
 
-
-
-
 ```python
 df_pclass = titanic[['Pclass', 'Survived']].groupby(['Pclass']).mean()
 df_pclass
 ```
-
-
-
 
 <div>
 <style scoped>
@@ -621,9 +573,6 @@ df_pclass
 </table>
 </div>
 
-
-
-
 ```python
 # 绘制柱状图
 
@@ -634,20 +583,14 @@ df_pclass.plot(kind='bar',
 plt.show()
 ```
 
-
 ![png](output_20_0.png)
 
-
 可以看到，等级越高的人，生存几率越大，那么ladyfirst能否跨越等级界限呢？
-
 
 ```python
 df_psex = titanic[['Pclass', 'Sex', 'Survived']].groupby(['Pclass', 'Sex']).mean()
 df_psex
 ```
-
-
-
 
 <div>
 <style scoped>
@@ -708,9 +651,6 @@ df_psex
 </table>
 </div>
 
-
-
-
 ```python
 df_psex.plot(kind='bar',
              rot=0,
@@ -719,9 +659,7 @@ df_psex.plot(kind='bar',
 plt.show()
 ```
 
-
 ![png](output_23_0.png)
-
 
 可以看到，ladyfirst确实跨越了社会等级界限，普通阶层的女性的生还率都高于精英阶层的男性生还率。
 不过，无法忽视的是，不同等级的生还率还是有一定区别的。
@@ -729,7 +667,6 @@ plt.show()
 ### 年龄Age对生还与否的影响
 
 绘图分析不同阶层和不同性别下的年龄分布情况以及与生还的关系
-
 
 ```python
 # 绘图分析不同阶层和不同性别下的年龄分布情况以及与生还的关系
@@ -745,10 +682,7 @@ ax[1].set_yticks(range(0, 110, 10))
 plt.show()
 ```
 
-
 ![png](output_27_0.png)
-
-
 
 ```python
 # 统计总体的年龄分布
@@ -763,12 +697,9 @@ titanic.boxplot(column='Age', showfliers=False)
 plt.show()
 ```
 
-
 ![png](output_28_0.png)
 
-
 因为年龄缺失值填充的问题，所以中间高出很多
-
 
 ```python
 page = sns.FacetGrid(titanic, hue="Survived",aspect=4)
@@ -778,13 +709,10 @@ page.add_legend()
 plt.show()
 ```
 
-
 ![png](output_30_0.png)
-
 
 可以看到，孩子和中年人更容易获救。那么规则就是 **lady and children first**，缺省值中死亡更多
 所以无法统计到年龄
-
 
 ```python
 f, ax = plt.subplots(figsize=(8,3))
@@ -795,12 +723,9 @@ ax.legend(fontsize=15)
 plt.show()
 ```
 
-
 ![png](output_32_0.png)
 
-
 可以看到，女性更加年轻些，孩子和中老年人中男性更多
-
 
 ```python
 f, ax = plt.subplots(figsize=(8,3))
@@ -812,14 +737,11 @@ ax.legend(fontsize=15)
 plt.show()
 ```
 
-
 ![png](output_34_0.png)
-
 
 阶层越高，年纪更老龄化
 
 ### 有无兄弟姐妹 SibSp 对生还与否的影响
-
 
 ```python
 # 首先将数据分为有兄弟姐妹和没有兄弟姐妹两组
@@ -827,7 +749,6 @@ plt.show()
 df_sibsp = titanic[titanic['SibSp'] != 0]
 df_sibsp_no = titanic[titanic['SibSp'] == 0]
 ```
-
 
 ```python
 plt.figure(figsize=(12,6))
@@ -842,15 +763,13 @@ plt.xlabel('sibsp_no',fontsize=18)
 plt.show()
 ```
 
-
 ![png](output_38_0.png)
-
 
 有了兄弟姐妹的帮助，似乎更能在险境中存活
 
 ### 有无父母孩子 Parch 对生还与否的影响
-方法同上
 
+方法同上
 
 ```python
 # 按照有无父母孩子分组
@@ -869,15 +788,13 @@ plt.xlabel('Parch_no',fontsize=18)
 plt.show()
 ```
 
-
 ![png](output_41_0.png)
-
 
 从之前的分析中知道，孩子是特殊照顾的对象，而孩子一般是有父母跟随的。即使都是成年人，互相帮助存活概率也更高。
 
 ### 亲人数量对生还与否的影响
-是否亲人越多，生还可能性越大呢？
 
+是否亲人越多，生还可能性越大呢？
 
 ```python
 fig,ax = plt.subplots(1, 2, figsize=(12,8))
@@ -889,10 +806,7 @@ ax[1].set_title('SibSp and Survived')
 plt.show()
 ```
 
-
 ![png](output_44_0.png)
-
-
 
 ```python
 titanic['fam_size'] = titanic['SibSp'] + titanic['Parch'] + 1
@@ -900,15 +814,12 @@ titanic[['fam_size','Survived']].groupby(['fam_size']).mean().plot.bar(figsize=(
 plt.show()
 ```
 
-
 ![png](output_45_0.png)
-
 
 从上可以看出，家庭成员在1-4人生还率最高，推测应该是这样正好组成了可以互帮互助，行动又不臃肿从小组。
 而后面7人家庭成员的存活率上升，推测应该是人数上升后，至少存活一人的概率增加。
 
 ### 票价 Fare 对生还与否的影响
-
 
 ```python
 # 绘制票价分布图
@@ -918,21 +829,13 @@ titanic.boxplot(column='Fare', by='Pclass',showfliers=False,figsize=(10,6))
 plt.show()
 ```
 
-
 ![png](output_48_0.png)
 
-
-
 ![png](output_48_1.png)
-
-
 
 ```python
 titanic['Fare'].describe()
 ```
-
-
-
 
     count    891.000000
     mean      32.204208
@@ -944,61 +847,37 @@ titanic['Fare'].describe()
     max      512.329200
     Name: Fare, dtype: float64
 
-
-
-
 ```python
 # 绘制生还者非生还者票价分析
 titanic.boxplot(column='Fare', by='Survived',showfliers=False,showmeans=True)
 ```
 
-
-
-
-    <matplotlib.axes._subplots.AxesSubplot at 0x1f276a7c4a8>
-
-
-
-
 ![png](output_50_1.png)
-
 
 可以看到，幸存者的票价普遍更高，符合之前阶层越高，生还几率越大的推测
 
 ### 船舱号码 Cabin 对生还与否的影响
-按照查询的资料，我认为乘客所处的船舱应该是跟是否生还有很大关系的，特别是下层的乘客，下部船舱快速进水，通向甲板的路不难想象也是混作一团，这就大大减少了生还可能。但是，此字段缺失数据多达600多个，所以只做下简单的数据分析。（不过我认为，票价和船舱应该有对应关系，如果能知道票价与船舱对应的史料就最好了）
 
+按照查询的资料，我认为乘客所处的船舱应该是跟是否生还有很大关系的，特别是下层的乘客，下部船舱快速进水，通向甲板的路不难想象也是混作一团，这就大大减少了生还可能。但是，此字段缺失数据多达600多个，所以只做下简单的数据分析。（不过我认为，票价和船舱应该有对应关系，如果能知道票价与船舱对应的史料就最好了）
 
 ```python
 titanic.Cabin.isnull().value_counts()
 ```
 
-
-
-
     True     687
     False    204
     Name: Cabin, dtype: int64
 
-
-
-
 ```python
 titanic.groupby(by=titanic.Cabin.isnull())['Survived'].mean()
 ```
-
-
-
 
     Cabin
     False    0.666667
     True     0.299854
     Name: Survived, dtype: float64
 
-
-
 由上可知，缺失值的生存率很低，那么可以将**Cabin是否为空**作为一个特征！
-
 
 ```python
 titanic['Cabin_fir'] = titanic.Cabin.fillna('0').str.split(' ').apply(lambda x: x[0][0])
@@ -1023,20 +902,13 @@ plt.show()
     G    0.500000
     T    0.000000
     Name: Survived, dtype: float64
-    
-
 
 ![png](output_56_1.png)
-
-
 
 ```python
 df_cabin_fare = titanic.groupby(by='Cabin_fir')['Fare','Survived'].mean()
 df_cabin_fare
 ```
-
-
-
 
 <div>
 <style scoped>
@@ -1115,8 +987,6 @@ df_cabin_fare
 </table>
 </div>
 
-
-
 在有记录的乘客中，可以发现，BC舱位总统套间，掏钱最多，DE为贵宾舱，费用中等，其余为普通舱。生还率大致符合阶层的情况。至于为何C舱生还率
 低于BDE，暂不分析，推测应该与所处舱位位置不佳，男性占比大，年龄偏大有关。
 
@@ -1126,24 +996,17 @@ df_cabin_fare
 
 南安普顿对应 S = Southampton， 瑟堡-奥克特维尔对应 C = Cherbourg，昆士敦对应 Q = Queenstown
 
-
 ```python
 titanic.groupby(by='Embarked')['Survived'].mean().plot(kind='bar', rot=0, fontsize=15, legend=True)
 plt.show()
 ```
 
-
 ![png](output_61_0.png)
-
-
 
 ```python
 df_embarked = titanic.groupby(by='Embarked')['Survived','Fare'].agg(['mean', 'count'])
 df_embarked
 ```
-
-
-
 
 <div>
 <style scoped>
@@ -1211,9 +1074,6 @@ df_embarked
 </table>
 </div>
 
-
-
-
 ```python
 ax = plt.figure(figsize=(10,6)).add_subplot(111)
 ax.set_xlim([-40, 80])
@@ -1224,9 +1084,7 @@ ax.legend(fontsize=18)
 plt.show()
 ```
 
-
 ![png](output_63_0.png)
-
 
 C和S上岸的乘客的年龄分布较为相似，Q上岸的人很多没有年龄。
 C和S比较，C口岸的人中有更多的孩子和老人
@@ -1235,15 +1093,11 @@ C和S比较，C口岸的人中有更多的孩子和老人
 通过对名字该字段的初步观察，发现名字中不但透漏出性别，还代表着一个人的地位，年龄，职业等
 比如Master，Miss等
 
-
 ```python
 # 称谓统计
 titanic['Title'] = titanic.Name.apply(lambda x: x.split(',')[1].split('.')[0])
 titanic['Title'].value_counts()
 ```
-
-
-
 
      Mr              517
      Miss            182
@@ -1264,16 +1118,10 @@ titanic['Title'].value_counts()
      Ms                1
     Name: Title, dtype: int64
 
-
-
-
 ```python
 # 姓氏统计
 titanic.Name.apply(lambda x: x.split(',')[1].split('.')[1]).value_counts()[:10]
 ```
-
-
-
 
      John             9
      James            7
@@ -1288,14 +1136,9 @@ titanic.Name.apply(lambda x: x.split(',')[1].split('.')[1]).value_counts()[:10]
     Name: Name, dtype: int64
 
 
-
-
 ```python
 titanic[['Title','Survived']].groupby(['Title']).mean()
 ```
-
-
-
 
 <div>
 <style scoped>
@@ -1395,23 +1238,17 @@ titanic[['Title','Survived']].groupby(['Title']).mean()
 </table>
 </div>
 
-
-
-
 ```python
 # 不同称呼的生存率统计
 titanic[['Title','Survived']].groupby(['Title']).mean().plot.bar(rot=45, figsize=(15,6), fontsize=12)
 plt.show()
 ```
 
-
 ![png](output_69_0.png)
-
 
 可以看到，称谓确实与获救率有关，以为称谓往往与人的性别，地位有关。
 
 换个角度，我们知道，歪果仁的名字中通常会加入家族名字，爵位等，所以是不是名字越长就越能像是一个家族的历史和地位呢？**那么名字的长短是否能够显示出人的地位从而影响到是否获救？**
-
 
 ```python
 titanic['name_len'] = titanic['Name'].apply(len)
@@ -1420,24 +1257,19 @@ df_namelen.plot.bar(x='name_len',y='Survived',figsize=(18,6),rot=0,colormap='Blu
 plt.show()
 ```
 
-
 ![png](output_71_0.png)
-
 
 看来猜想是正确的，名字的长度确实与是否获救有一定关系
 
 ### Ticket
-类别比较大，观察可以发现，票号开头应该代表着船舱区域，故提取分析
 
+类别比较大，观察可以发现，票号开头应该代表着船舱区域，故提取分析
 
 ```python
 titanic['Ticket_Lett'] = titanic['Ticket'].apply(lambda x: str(x)[0])
 titanic['Ticket_Lett'] = titanic['Ticket_Lett'].apply(lambda x: str(x))
 titanic.groupby(titanic['Ticket_Lett'])['Survived'].mean()
 ```
-
-
-
 
     Ticket_Lett
     1    0.630137
@@ -1458,23 +1290,11 @@ titanic.groupby(titanic['Ticket_Lett'])['Survived'].mean()
     W    0.153846
     Name: Survived, dtype: float64
 
-
-
-
 ```python
 titanic.groupby(titanic['Ticket_Lett'])['Survived'].mean().plot.bar(rot=0)
 ```
 
-
-
-
-    <matplotlib.axes._subplots.AxesSubplot at 0x1f2769a1b70>
-
-
-
-
 ![png](output_75_1.png)
-
 
 可以看到，船票不同开头的生存率不同，可以作为一个特征
 
@@ -1485,8 +1305,8 @@ titanic.groupby(titanic['Ticket_Lett'])['Survived'].mean().plot.bar(rot=0)
 ## 特征工程
 
 ### 变量转换
-> 变量转换的目的是将数据转换为适用于模型使用的数据，不同模型接受不同类型的数据，**Scikit-learn要求数据都是数字型numeric**，所以我们要将一些非数字型的原始数据转换为数字型numeric
 
+> 变量转换的目的是将数据转换为适用于模型使用的数据，不同模型接受不同类型的数据，**Scikit-learn要求数据都是数字型numeric**，所以我们要将一些非数字型的原始数据转换为数字型numeric
 
 ```python
 from sklearn.preprocessing import LabelEncoder
@@ -1501,7 +1321,6 @@ import warnings
 warnings.filterwarnings('ignore')
 ```
 
-
 ```python
 os.chdir('E:\DataScience\ML\Titanic')
 data_train = pd.read_csv('train.csv')
@@ -1512,8 +1331,8 @@ combine = pd.concat([data_train,data_test])
 对数据进行特征工程，也就是从各项参数中提取出对输出结果有或大或小的影响的特征，将这些特征作为训练模型的依据。 一般来说，我们会先从含有缺失值的特征开始
 
 ### Embarked
-因为该项的缺失值没几个，所以这里我们以众数来填充：
 
+因为该项的缺失值没几个，所以这里我们以众数来填充：
 
 ```python
 # 缺失值填充，众数为 S
@@ -1527,13 +1346,11 @@ combine = pd.concat([combine, df], axis=1).drop('Embarked', axis=1)
 
 ### Name_length
 
-
 ```python
 combine['Name_length'] = combine['Name'].apply(len)
 ```
 
 ### Title
-
 
 ```python
 combine['Title'] = combine['Name'].apply(lambda x: x.split(',')[1]).apply(lambda x:x.split('.')[0])
@@ -1549,8 +1366,8 @@ combine = pd.concat([combine,df], axis=1)
 ```
 
 ### Fare
-该项只有一个缺失值，对该值进行填充,我们可以按照阶级均价来填充
 
+该项只有一个缺失值，对该值进行填充,我们可以按照阶级均价来填充
 
 ```python
 combine['Fare'] = combine['Fare'].fillna(combine.groupby('Pclass')['Fare'].transform(np.mean))
@@ -1558,13 +1375,11 @@ combine['Fare'] = combine['Fare'].fillna(combine.groupby('Pclass')['Fare'].trans
 
 通过对Ticket简单的统计，我们可以看到部分票号数据有重复，同时结合亲属人数及名字的数据，和票价船舱等级对比，我们可以知道购买的票中有团体票，所以我们需要将团体票的票价分配到每个人的头上
 
-
 ```python
 combine['Group_Ticket'] = combine['Fare'].groupby(by=combine['Ticket']).transform('count')
 combine['Fare'] = combine['Fare'] / combine['Group_Ticket']
 combine.drop(['Group_Ticket'], axis=1, inplace=True)
 ```
-
 
 ```python
 #  分级
@@ -1576,8 +1391,8 @@ combine = combine.drop('Fare',axis=1)
 ```
 
 ### Dead_female_family & Survive_male_family
-前面分析可以知道，家庭的行为具有一致性，那么如果家族中有一个女的死亡，那么其他女性也倾向于死亡，反之，如果有男性生还，其他男性也会倾向于生还，为了防止模型无脑判断女性生还和男性死亡，在这里分出这两类情况。
 
+前面分析可以知道，家庭的行为具有一致性，那么如果家族中有一个女的死亡，那么其他女性也倾向于死亡，反之，如果有男性生还，其他男性也会倾向于生还，为了防止模型无脑判断女性生还和男性死亡，在这里分出这两类情况。
 
 ```python
 combine['Fname'] = combine['Name'].apply(lambda x:x.split(',')[0])
@@ -1590,8 +1405,8 @@ combine = combine.drop(['Name','Fname','Familysize'],axis=1)
 ```
 
 ### Age
-Age缺失值太多，可以按照阶级性别的平均年龄填充，也可以利用机器学习算法来预测,这里我们采用第一种方法
 
+Age缺失值太多，可以按照阶级性别的平均年龄填充，也可以利用机器学习算法来预测,这里我们采用第一种方法
 
 ```python
 group = combine.groupby(['Title', 'Pclass'])['Age']
@@ -1602,8 +1417,8 @@ combine = combine.drop(['Title'],axis=1)
 ```
 
 ### Cabin
-Cabin的缺失值太多，但是根据之前的分析，该特征值的有无与生还与否也相关性，所以我们将其分为两类
 
+Cabin的缺失值太多，但是根据之前的分析，该特征值的有无与生还与否也相关性，所以我们将其分为两类
 
 ```python
 combine['Cabin_0'] = np.where(combine['Cabin'].isnull(),1,0)
@@ -1612,9 +1427,8 @@ combine = combine.drop('Cabin',axis=1)
 ```
 
 ### Pclass
+
 Pclass这一项，只需要将其转换为dummy形式就可以了
-
-
 
 ```python
 df = pd.get_dummies(combine['Pclass'], prefix='Pclass')
@@ -1622,8 +1436,8 @@ combine = pd.concat([combine, df], axis=1).drop('Pclass',axis=1)
 ```
 
 ### Ticket
-Ticket 在前面并没有分析，主要是因为里面有英文有数字，难以分析出规律，但是只看英文数字结合的票号，不难发现，票号前面的英文应该代表着位置信息，那么位置影响逃生路线，故将这部分提取出来做特征处理
 
+Ticket 在前面并没有分析，主要是因为里面有英文有数字，难以分析出规律，但是只看英文数字结合的票号，不难发现，票号前面的英文应该代表着位置信息，那么位置影响逃生路线，故将这部分提取出来做特征处理
 
 ```python
 combine['Ticket_Lett'] = combine['Ticket'].apply(lambda x: str(x)[0])
@@ -1636,8 +1450,8 @@ combine = combine.drop(['Ticket','Ticket_Lett'],axis=1)
 ```
 
 ### Sex
-对Sex进行one-hot编码
 
+对Sex进行one-hot编码
 
 ```python
 df = pd.get_dummies(combine['Sex'], prefix='Sex')
@@ -1645,8 +1459,8 @@ combine = pd.concat([combine, df],axis=1).drop('Sex',axis=1)
 ```
 
 ### Parch and SibSp
-亲友数量是会影响到生存率的，那么将这两项合为一项
 
+亲友数量是会影响到生存率的，那么将这两项合为一项
 
 ```python
 combine['Family_size'] = np.where((combine['Parch']+combine['SibSp']==0),'Alone',
@@ -1658,7 +1472,6 @@ combine = pd.concat([combine,df],axis=1).drop(['SibSp','Parch','Family_size'],ax
 
 ### 将所有特征转换正数值型编码
 
-
 ```python
 features = combine.drop(["PassengerId","Survived"], axis=1).columns
 le = LabelEncoder()
@@ -1669,7 +1482,6 @@ for feature in features:
 
 ### 将训练数据和测试数据分开
 
-
 ```python
 x_train = combine.iloc[:891,:].drop(['PassengerId', 'Survived'],axis=1)
 y_train = combine.iloc[:891,:]['Survived']
@@ -1677,7 +1489,6 @@ x_test = combine.iloc[891:,:].drop(['PassengerId','Survived'], axis=1)
 ```
 
 ### 模型比较
-
 
 ```python
 # logistic Regression
@@ -1731,8 +1542,6 @@ print(models.sort_values(by='Score', ascending=False))
     2  87.32       knn
     1  87.09       svc
     0  86.31    Logreg
-    
-
 
 ```python
 # XGB
@@ -1740,7 +1549,6 @@ xgb = XGBClassifier(max_depth=3, n_estimators=300, learning_rate=0.03)
 xgb.fit(x_train,y_train)
 y_pred = xgb.predict(x_test)
 ```
-
 
 ```python
 subminssion = pd.DataFrame({"PassengerId": data_test["PassengerId"],"Survived": y_pred})
