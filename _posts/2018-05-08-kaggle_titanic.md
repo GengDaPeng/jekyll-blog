@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      "Kaggle竞赛——泰坦尼克号幸存者预测"
-subtitle:   "在那场灾难中，是什么？在左右着生死。"
+subtitle:   "在那场灾难中，是什么？左右着生死。"
 date:       2018-05-08
 author:     "GengDaPeng"
 header-img: "img/titanic/titanic-bg.jpg"
@@ -10,7 +10,8 @@ catalog:    true
 tags:
     - kaggle
 ---
-泰坦尼克号是当时（1912年）世界上体积最庞大、内部设施最豪华的客运轮船，有“永不沉没”的美誉 。然而在首次航行中，泰坦尼克号与一座冰山相撞，逾1500人丧生，其中仅333具罹难者遗体被寻回。泰坦尼克号沉没事故为和平时期死伤人数最惨重的海难之一，其残骸直至1985年才被再度发现，目前受到联合国教育、科学及文化组织的保护。本次竞赛以此为背景，根据提供的乘客数据来预测这些乘客能否生还（当然真实的情况要比这复杂得多）。
+
+> 泰坦尼克号是当时（1912年）世界上体积最庞大、内部设施最豪华的客运轮船，有“永不沉没”的美誉 。然而在首次航行中，泰坦尼克号与一座冰山相撞，逾1500人丧生，其中仅333具罹难者遗体被寻回。泰坦尼克号沉没事故为和平时期死伤人数最惨重的海难之一，其残骸直至1985年才被再度发现，目前受到联合国教育、科学及文化组织的保护。本次竞赛以此为背景，根据提供的乘客数据来预测这些乘客能否生还（当然真实的情况要比这复杂得多）。
 
 ```python
 import pandas as pd
@@ -506,7 +507,7 @@ df_sex.plot(kind='bar',
 plt.grid(True, linestyle='--')
 ```
 
-![png](output_14_0.png)
+![png](/img/titanic/output_14_0.png)
 
 **从上面可以发现，事实是与男性比女性的生存能力更强的经验常识相悖的，可以推测Lady First起到了很大的作用**
 
@@ -583,7 +584,7 @@ df_pclass.plot(kind='bar',
 plt.show()
 ```
 
-![png](output_20_0.png)
+![png](/img/titanic/output_20_0.png)
 
 可以看到，等级越高的人，生存几率越大，那么ladyfirst能否跨越等级界限呢？
 
@@ -659,7 +660,7 @@ df_psex.plot(kind='bar',
 plt.show()
 ```
 
-![png](output_23_0.png)
+![png](/img/titanic/output_23_0.png)
 
 可以看到，ladyfirst确实跨越了社会等级界限，普通阶层的女性的生还率都高于精英阶层的男性生还率。
 不过，无法忽视的是，不同等级的生还率还是有一定区别的。
@@ -682,7 +683,7 @@ ax[1].set_yticks(range(0, 110, 10))
 plt.show()
 ```
 
-![png](output_27_0.png)
+![png](/img/titanic/output_27_0.png)
 
 ```python
 # 统计总体的年龄分布
@@ -697,7 +698,7 @@ titanic.boxplot(column='Age', showfliers=False)
 plt.show()
 ```
 
-![png](output_28_0.png)
+![png](/img/titanic/output_28_0.png)
 
 因为年龄缺失值填充的问题，所以中间高出很多
 
@@ -709,7 +710,7 @@ page.add_legend()
 plt.show()
 ```
 
-![png](output_30_0.png)
+![png](/img/titanic/output_30_0.png)
 
 可以看到，孩子和中年人更容易获救。那么规则就是 **lady and children first**，缺省值中死亡更多
 所以无法统计到年龄
@@ -723,7 +724,7 @@ ax.legend(fontsize=15)
 plt.show()
 ```
 
-![png](output_32_0.png)
+![png](/img/titanic/output_32_0.png)
 
 可以看到，女性更加年轻些，孩子和中老年人中男性更多
 
@@ -737,7 +738,7 @@ ax.legend(fontsize=15)
 plt.show()
 ```
 
-![png](output_34_0.png)
+![png](/img/titanic/output_34_0.png)
 
 阶层越高，年纪更老龄化
 
@@ -763,7 +764,7 @@ plt.xlabel('sibsp_no',fontsize=18)
 plt.show()
 ```
 
-![png](output_38_0.png)
+![png](/img/titanic/output_38_0.png)
 
 有了兄弟姐妹的帮助，似乎更能在险境中存活
 
@@ -788,7 +789,7 @@ plt.xlabel('Parch_no',fontsize=18)
 plt.show()
 ```
 
-![png](output_41_0.png)
+![png](/img/titanic/output_41_0.png)
 
 从之前的分析中知道，孩子是特殊照顾的对象，而孩子一般是有父母跟随的。即使都是成年人，互相帮助存活概率也更高。
 
@@ -806,7 +807,7 @@ ax[1].set_title('SibSp and Survived')
 plt.show()
 ```
 
-![png](output_44_0.png)
+![png](/img/titanic/output_44_0.png)
 
 ```python
 titanic['fam_size'] = titanic['SibSp'] + titanic['Parch'] + 1
@@ -814,7 +815,7 @@ titanic[['fam_size','Survived']].groupby(['fam_size']).mean().plot.bar(figsize=(
 plt.show()
 ```
 
-![png](output_45_0.png)
+![png](/img/titanic/output_45_0.png)
 
 从上可以看出，家庭成员在1-4人生还率最高，推测应该是这样正好组成了可以互帮互助，行动又不臃肿从小组。
 而后面7人家庭成员的存活率上升，推测应该是人数上升后，至少存活一人的概率增加。
@@ -829,9 +830,9 @@ titanic.boxplot(column='Fare', by='Pclass',showfliers=False,figsize=(10,6))
 plt.show()
 ```
 
-![png](output_48_0.png)
+![png](/img/titanic/output_48_0.png)
 
-![png](output_48_1.png)
+![png](/img/titanic/output_48_1.png)
 
 ```python
 titanic['Fare'].describe()
@@ -852,7 +853,7 @@ titanic['Fare'].describe()
 titanic.boxplot(column='Fare', by='Survived',showfliers=False,showmeans=True)
 ```
 
-![png](output_50_1.png)
+![png](/img/titanic/output_50_1.png)
 
 可以看到，幸存者的票价普遍更高，符合之前阶层越高，生还几率越大的推测
 
@@ -903,7 +904,7 @@ plt.show()
     T    0.000000
     Name: Survived, dtype: float64
 
-![png](output_56_1.png)
+![png](/img/titanic/output_56_1.png)
 
 ```python
 df_cabin_fare = titanic.groupby(by='Cabin_fir')['Fare','Survived'].mean()
@@ -1001,7 +1002,7 @@ titanic.groupby(by='Embarked')['Survived'].mean().plot(kind='bar', rot=0, fontsi
 plt.show()
 ```
 
-![png](output_61_0.png)
+![png](/img/titanic/output_61_0.png)
 
 ```python
 df_embarked = titanic.groupby(by='Embarked')['Survived','Fare'].agg(['mean', 'count'])
@@ -1084,12 +1085,13 @@ ax.legend(fontsize=18)
 plt.show()
 ```
 
-![png](output_63_0.png)
+![png](/img/titanic/output_63_0.png)
 
 C和S上岸的乘客的年龄分布较为相似，Q上岸的人很多没有年龄。
 C和S比较，C口岸的人中有更多的孩子和老人
 
-### 名字 Name 对生还与否的影响
+### 名字 Name 对生还与否的影响\
+
 通过对名字该字段的初步观察，发现名字中不但透漏出性别，还代表着一个人的地位，年龄，职业等
 比如Master，Miss等
 
@@ -1244,7 +1246,7 @@ titanic[['Title','Survived']].groupby(['Title']).mean().plot.bar(rot=45, figsize
 plt.show()
 ```
 
-![png](output_69_0.png)
+![png](/img/titanic/output_69_0.png)
 
 可以看到，称谓确实与获救率有关，以为称谓往往与人的性别，地位有关。
 
@@ -1257,7 +1259,7 @@ df_namelen.plot.bar(x='name_len',y='Survived',figsize=(18,6),rot=0,colormap='Blu
 plt.show()
 ```
 
-![png](output_71_0.png)
+![png](/img/titanic/output_71_0.png)
 
 看来猜想是正确的，名字的长度确实与是否获救有一定关系
 
@@ -1294,7 +1296,7 @@ titanic.groupby(titanic['Ticket_Lett'])['Survived'].mean()
 titanic.groupby(titanic['Ticket_Lett'])['Survived'].mean().plot.bar(rot=0)
 ```
 
-![png](output_75_1.png)
+![png](/img/titanic/output_75_1.png)
 
 可以看到，船票不同开头的生存率不同，可以作为一个特征
 
@@ -1545,12 +1547,15 @@ print(models.sort_values(by='Score', ascending=False))
 
 ```python
 # XGB
-xgb = XGBClassifier(max_depth=3, n_estimators=300, learning_rate=0.03)
+xgb = XGBClassifier()
 xgb.fit(x_train,y_train)
-y_pred = xgb.predict(x_test)
+y_pred = xgb.predict(x_test).astype(int)# 该列必须是整型，否则格式不对，得分0分（别问我怎么知道的）
+# 只得到了78分的成绩 
 ```
 
 ```python
 subminssion = pd.DataFrame({"PassengerId": data_test["PassengerId"],"Survived": y_pred})
 subminssion.to_csv('submission.csv',index=False)
 ```
+最后，提交结果后，发现得到了11% 的排名，这里没有做模型融合，模型的调参也不怎么熟练，特征工程也做的一般，所以还是有很大的优化空间的。
+
