@@ -39,17 +39,14 @@ titanic_test = pd.read_csv(r'E:\DataScience\ML\Titanic\test.csv')
 
 titanic.head(10)
 ```
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
     .dataframe tbody tr th {
         vertical-align: top;
     }
-
     .dataframe thead th {
         text-align: right;
     }
@@ -464,11 +461,9 @@ df_sex
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
     .dataframe tbody tr th {
         vertical-align: top;
     }
-
     .dataframe thead th {
         text-align: right;
     }
@@ -538,11 +533,9 @@ df_pclass
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
     .dataframe tbody tr th {
         vertical-align: top;
     }
-
     .dataframe thead th {
         text-align: right;
     }
@@ -599,11 +592,9 @@ df_psex
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
     .dataframe tbody tr th {
         vertical-align: top;
     }
-
     .dataframe thead th {
         text-align: right;
     }
@@ -917,11 +908,9 @@ df_cabin_fare
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
     .dataframe tbody tr th {
         vertical-align: top;
     }
-
     .dataframe thead th {
         text-align: right;
     }
@@ -1015,11 +1004,9 @@ df_embarked
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
     .dataframe tbody tr th {
         vertical-align: top;
     }
-
     .dataframe thead tr th {
         text-align: left;
     }
@@ -1148,11 +1135,9 @@ titanic[['Title','Survived']].groupby(['Title']).mean()
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
     .dataframe tbody tr th {
         vertical-align: top;
     }
-
     .dataframe thead th {
         text-align: right;
     }
@@ -1558,5 +1543,5 @@ y_pred = xgb.predict(x_test).astype(int)# 该列必须是整型，否则格式�
 subminssion = pd.DataFrame({"PassengerId": data_test["PassengerId"],"Survived": y_pred})
 subminssion.to_csv('submission.csv',index=False)
 ```
-最后，提交结果后，发现得到了11% 的排名，这里没有做模型融合，模型的调参也不怎么熟练，特征工程也做的一般，所以还是有很大的优化空间的。
 
+最后，提交结果后，发现得到了11% 的排名，这里没有做模型融合，模型的调参也不怎么熟练，特征工程也做的一般，所以还是有很大的优化空间的。
