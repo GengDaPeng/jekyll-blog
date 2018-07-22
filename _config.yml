@@ -65,8 +65,8 @@ gitalk:
 # ba_track_id: [your track id]
 
 # Google Analytics
-ga_track_id:            # Format: UA-xxxxxx-xx
-ga_domain: 
+ga_track_id: UA-122680302-1           # Format: UA-xxxxxx-xx
+ga_domain: gengdapeng.github.io
 
 
 
