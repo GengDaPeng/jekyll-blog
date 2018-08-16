@@ -39,6 +39,7 @@ titanic_test = pd.read_csv(r'E:\DataScience\ML\Titanic\test.csv')
 
 titanic.head(10)
 ```
+
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
