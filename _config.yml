@@ -96,3 +96,5 @@ friends: [
         href: "https://www.jianshu.com/u/112db3be86d6"
     }
 ]
+
+theme: jekyll-theme-cayman
